@@ -106,6 +106,21 @@
   .t-free{background:var(--sea-soft);color:var(--sea)}
   .t-fam{background:var(--plum-soft);color:var(--plum)}
 
+  .slot .what span.tag{display:inline-block;width:auto;margin-top:0}
+  .d-title span.tag{display:inline-block}
+  /* inline transport hop between slots */
+  .hop{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;
+       margin:2px 0 2px 78px;padding:9px 0 9px 14px;
+       border-left:2px dotted var(--line);font-size:13px;color:var(--ink-3);line-height:1.5}
+  .hop b{color:var(--ink-2);font-weight:700;white-space:nowrap}
+  .ln{display:inline-block;font-weight:800;font-size:11px;letter-spacing:.02em;color:#fff;
+      background:var(--c);padding:3px 8px;border-radius:4px;white-space:nowrap}
+  .ln.dk{color:#14202e}
+  a.ext{display:inline-block;font-size:12px;font-weight:700;color:var(--sea);text-decoration:none;
+        border:1px solid var(--line);border-radius:5px;padding:0 5px;margin-left:6px;vertical-align:middle}
+  a.ext:hover{background:var(--sea-soft);border-color:var(--sea)}
+  @media (max-width:700px){ .hop{margin-left:0;padding-left:12px} }
+
   /* ---------- tiles ---------- */
   .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:8px 0 26px}
   .tile{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
@@ -135,6 +150,56 @@
         padding:5px 11px;border-radius:20px;background:var(--sea-soft);color:var(--sea);white-space:nowrap}
   .check.now .when{background:var(--sun-soft);color:var(--sun)}
 
+
+  /* wide tables stack into cards on a phone */
+  @media (max-width:700px){
+    table.rt{display:block;border:0;background:none}
+    table.rt tbody{display:block}
+    table.rt tr{display:block;background:var(--card);border:1px solid var(--line);
+                border-radius:12px;margin-bottom:10px;padding:14px 16px}
+    table.rt tr:first-child{display:none}
+    table.rt td{display:block;border:0;padding:0;margin:0 0 8px 0;font-size:14.5px}
+    table.rt td:last-child{margin-bottom:0}
+    table.rt td:first-child{font-size:16px;font-weight:700;color:var(--ink);
+                            margin-bottom:10px;padding-bottom:8px;border-bottom:1px dashed var(--line)}
+    table.rt td.num{text-align:left;font-weight:600}
+    table.rt td[data-l]::before{content:attr(data-l);display:block;font-size:10.5px;
+                                letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);
+                                font-weight:700;margin-bottom:2px}
+  }
+
+  /* ---------- family voting ---------- */
+  .voter{position:sticky;top:51px;z-index:19;background:var(--card);border-bottom:1px solid var(--line);
+         padding:10px 22px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+         box-shadow:0 1px 10px rgba(0,0,0,.04)}
+  .voter .vlab{font-size:11px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+  .who{display:flex;gap:6px;flex-wrap:wrap}
+  .who button{font:inherit;font-size:13px;font-weight:700;cursor:pointer;border:1px solid var(--line);
+              background:var(--card);color:var(--ink-2);border-radius:20px;padding:5px 13px}
+  .who button:hover{border-color:var(--ink-3)}
+  .who button[aria-pressed="true"]{background:var(--p);border-color:var(--p);color:#fff}
+  .vtools{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .vtools button{font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;border:1px solid var(--line);
+                 background:var(--card);color:var(--ink-2);border-radius:8px;padding:6px 11px}
+  .vtools button:hover{border-color:var(--sea);color:var(--sea)}
+  .vcount{font-size:12.5px;color:var(--ink-3);font-weight:600}
+
+  .vote{display:flex;align-items:center;gap:8px;margin-top:9px;flex-wrap:wrap}
+  .vote button{font:inherit;font-size:15px;line-height:1;cursor:pointer;border:1px solid var(--line);
+               background:var(--card);border-radius:8px;padding:5px 10px;color:var(--ink-3)}
+  .vote button:hover{border-color:var(--ink-3)}
+  .vote button.up[aria-pressed="true"]{background:var(--sea-soft);border-color:var(--sea);color:var(--sea)}
+  .vote button.dn[aria-pressed="true"]{background:var(--sun-soft);border-color:var(--sun);color:var(--sun)}
+  .vote .tally{display:flex;gap:4px;flex-wrap:wrap}
+  .pip{display:inline-flex;align-items:center;justify-content:center;width:21px;height:21px;border-radius:50%;
+       font-size:11px;font-weight:800;color:#fff;background:var(--p)}
+  .pip.dn{background:transparent;color:var(--p);box-shadow:inset 0 0 0 2px var(--p);opacity:.85}
+  .vote .none{font-size:12px;color:var(--ink-3)}
+  /* beat the .slot .what span rule that forces block + ink colour */
+  .slot .what span.tally{display:flex;gap:4px;flex-shrink:0;margin-top:0;width:auto}
+  .slot .what span.pip{display:inline-flex;color:#fff;margin-top:0;width:21px}
+  .slot .what span.pip.dn{color:var(--p);background:transparent}
+  @media (max-width:700px){ .voter{top:49px;padding:9px 16px} .vtools{margin-left:0;width:100%} }
   footer{margin-top:70px;padding-top:24px;border-top:1px solid var(--line);
          font-size:13px;color:var(--ink-3);max-width:74ch}
 
@@ -165,12 +230,23 @@
 
 <nav><div class="nav-in">
   <a href="#flights">Flights</a>
+  <a href="#transport">Getting around</a>
   <a href="#tokyo">Tokyo</a>
   <a href="#sydney">Sydney</a>
   <a href="#costs">Costs</a>
   <a href="#visas">Visas</a>
   <a href="#checklist">Book now</a>
 </div></nav>
+<div class="voter">
+  <span class="vlab">Voting as</span>
+  <div class="who" id="who"></div>
+  <div class="vtools">
+    <span class="vcount" id="vcount"></span>
+    <button type="button" id="vshare">Copy our votes link</button>
+    <button type="button" id="vclear">Clear mine</button>
+  </div>
+</div>
+
 
 <div class="wrap">
 
@@ -225,7 +301,92 @@
   </div>
 </div>
 
+<!-- ============ GETTING AROUND ============ -->
+<h2 id="transport">Getting around</h2>
+<p class="lede">Every hop, with the line and roughly how long it takes</p>
+<p class="intro">Times are door-to-platform estimates including a change where there is one — add five minutes for walking at either end. Check live before you go: <b>Google Maps</b> works properly in both cities, and in Tokyo the station signage is bilingual throughout.</p>
+
+<h3 style="font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:34px 0 10px">Tokyo — from the Edmont, Iidabashi</h3>
+
+<div class="flags" style="margin-top:0">
+  <div class="flag" style="border-left-color:var(--sea);background:var(--sea-soft)">
+    <b>Iidabashi sits on five lines, which is the whole reason it works</b>
+    <p><b>Toei Oedo</b> (E-06) · <b>Tokyo Metro Tozai</b> (T-06) · <b>Yurakucho</b> (Y-13) · <b>Namboku</b> (N-10) · <b>JR Chuo-Sobu</b>. Suidobashi, five minutes' walk, adds the Toei Mita line. Tap in and out with your Suica or Pasmo — no tickets, no working out fares. Most hops below cost <b>¥180–260</b> a person.</p>
+  </div>
+</div>
+
+<table class="rt">
+  <tr><th>Going to</th><th>Route</th><th>Time</th><th style="text-align:right">When</th></tr>
+  <tr><td><b>Haneda T3 → Iidabashi</b></td><td data-l="Route">Keikyu Line (runs through onto the Toei Asakusa Line) to <b>Daimon</b>, change to <b>Toei Oedo</b> → Iidabashi</td><td data-l="Time">~50 min<br><span style="color:var(--ink-3);font-size:13px">1 change · ~¥660</span></td><td data-l="When" class="num">Sun 13, arrival</td></tr>
+  <tr><td><b>Koishikawa Korakuen</b></td><td data-l="Route">Walk from Iidabashi west side</td><td data-l="Time">8 min on foot</td><td data-l="When" class="num">Sun 13</td></tr>
+  <tr><td><b>Kagurazaka</b></td><td data-l="Route">Walk — it starts at the station</td><td data-l="Time">3 min on foot</td><td data-l="When" class="num">Sun 13 &amp; Tue 15</td></tr>
+  <tr><td><b>Shibuya</b> (Shibuya Sky)</td><td data-l="Route"><b>JR Chuo-Sobu</b> → Yoyogi, change to <b>JR Yamanote</b> → Shibuya</td><td data-l="Time">~20 min<br><span style="color:var(--ink-3);font-size:13px">1 change</span></td><td data-l="When" class="num">Sun 13</td></tr>
+  <tr><td><b>Harajuku</b> / Meiji Jingu</td><td data-l="Route">Same route, one stop earlier on the Yamanote</td><td data-l="Time">~18 min</td><td data-l="When" class="num">optional</td></tr>
+  <tr><td><b>Tsukiji Outer Market</b></td><td data-l="Route"><b>Toei Oedo</b> direct → Tsukijishijo</td><td data-l="Time">~20 min<br><span style="color:var(--ink-3);font-size:13px">no change</span></td><td data-l="When" class="num">Mon 14, 07:00</td></tr>
+  <tr><td><b>Hamarikyu Gardens</b></td><td data-l="Route">Walk from Tsukiji, or Oedo to Shiodome</td><td data-l="Time">10 min on foot</td><td data-l="When" class="num">Mon 14</td></tr>
+  <tr><td><b>Asakusa</b> (Senso-ji)</td><td data-l="Route">River boat from Hamarikyu — <em>take this, not the train</em></td><td data-l="Time">~25 min by boat</td><td data-l="When" class="num">Mon 14, 10:30</td></tr>
+  <tr><td><b>Asakusa</b>, by train instead</td><td data-l="Route"><b>Tozai</b> → Nihombashi, change to <b>Ginza Line</b> → Asakusa</td><td data-l="Time">~22 min<br><span style="color:var(--ink-3);font-size:13px">1 change</span></td><td data-l="When" class="num">fallback</td></tr>
+  <tr><td><b>Tokyo Skytree</b></td><td data-l="Route">Walk from Asakusa, or one stop on the Tobu Skytree Line</td><td data-l="Time">15 min on foot</td><td data-l="When" class="num">Mon 14</td></tr>
+  <tr><td><b>Marunouchi lights</b> / Tokyo Station</td><td data-l="Route"><b>Tozai</b> direct → Otemachi, then underground to Tokyo Station</td><td data-l="Time">~12 min<br><span style="color:var(--ink-3);font-size:13px">no change</span></td><td data-l="When" class="num">Mon 14, 17:00</td></tr>
+  <tr><td><b>teamLab Borderless</b>, Azabudai</td><td data-l="Route"><b>Toei Oedo</b> direct → Azabu-juban, then 8 min walk</td><td data-l="Time">~25 min<br><span style="color:var(--ink-3);font-size:13px">no change</span></td><td data-l="When" class="num">Tue 15, 09:00</td></tr>
+  <tr><td><b>Tokyo Tower</b> / Zojo-ji</td><td data-l="Route">Walk from Azabudai, or <b>Oedo</b> → Akabanebashi</td><td data-l="Time">15 min on foot</td><td data-l="When" class="num">Tue 15</td></tr>
+  <tr><td><b>Imperial Palace East Gardens</b></td><td data-l="Route"><b>Tozai</b> direct → Takebashi, two stops</td><td data-l="Time">~6 min<br><span style="color:var(--ink-3);font-size:13px">no change</span></td><td data-l="When" class="num">Tue 15</td></tr>
+  <tr><td><b>Ginza</b></td><td data-l="Route"><b>Yurakucho Line</b> direct → Ginza-itchome</td><td data-l="Time">~10 min<br><span style="color:var(--ink-3);font-size:13px">no change</span></td><td data-l="When" class="num">Tue 15</td></tr>
+  <tr><td><b>Iidabashi → Haneda T3</b></td><td data-l="Route"><b>Pre-booked jumbo taxi</b> — trains don't start early enough to be safe</td><td data-l="Time">35–45 min<br><span style="color:var(--ink-3);font-size:13px">~¥18,200 for four</span></td><td data-l="When" class="num">Wed 16, 05:30</td></tr>
+</table>
+
+<h3 style="font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:40px 0 10px">Sydney — from Pymble</h3>
+
+<div class="flags" style="margin-top:0">
+  <div class="flag" style="border-left-color:var(--sea);background:var(--sea-soft)">
+    <b>Just tap on with a contactless card — there's no Opal card to buy</b>
+    <p>Pymble is on the <b>T1 North Shore line</b>, four stops south of Hornsby, with trains every ten to fifteen minutes. Fares cap at <b>A$50 per person per week</b> (Monday–Sunday) and Sundays are capped far lower still — so put your biggest travel day on a Sunday where you can. Ferries are ordinary public transport on the same fare, and they beat any paid harbour cruise.</p>
+  </div>
+</div>
+
+<table class="rt">
+  <tr><th>Going to</th><th>Route</th><th>Time</th><th style="text-align:right">When</th></tr>
+  <tr><td><b>Sydney Airport → Pymble</b></td><td data-l="Route"><b>Pre-booked maxi cab</b> — the train means changing at Central plus the airport access fee, with eight bags at half nine at night</td><td data-l="Time">~45 min<br><span style="color:var(--ink-3);font-size:13px">~A$130</span></td><td data-l="When" class="num">Wed 16, 21:15</td></tr>
+  <tr><td><b>Pymble → Hornsby</b> (collect the car)</td><td data-l="Route"><b>T1 North Shore</b> northbound, four stops</td><td data-l="Time">~10 min</td><td data-l="When" class="num">Fri 18, 08:00</td></tr>
+  <tr><td><b>Ku-ring-gai Chase NP</b></td><td data-l="Route">Drive — Bobbin Head or West Head</td><td data-l="Time">20–35 min</td><td data-l="When" class="num">Thu 17</td></tr>
+  <tr><td><b>Pymble → Circular Quay</b></td><td data-l="Route"><b>T1 North Shore</b> southbound, direct on most services</td><td data-l="Time">~40 min</td><td data-l="When" class="num">Mon 28</td></tr>
+  <tr><td><b>Pymble → Wynyard</b></td><td data-l="Route">Same line, one stop earlier</td><td data-l="Time">~37 min</td><td data-l="When" class="num">as needed</td></tr>
+  <tr><td><b>Pymble → Chatswood</b> (for the Metro)</td><td data-l="Route"><b>T1</b> three stops, then interchange to <b>Metro M1</b></td><td data-l="Time">~8 min to Chatswood</td><td data-l="When" class="num">alternative route in</td></tr>
+  <tr><td><b>Circular Quay → Manly</b></td><td data-l="Route"><b>F1 ferry</b> — the great cheap harbour cruise</td><td data-l="Time">~30 min</td><td data-l="When" class="num">Sun 27</td></tr>
+  <tr><td><b>Circular Quay → Taronga</b></td><td data-l="Route"><b>F2 ferry</b></td><td data-l="Time">~12 min</td><td data-l="When" class="num">optional</td></tr>
+  <tr><td><b>Pymble → Bondi Beach</b></td><td data-l="Route"><b>T1</b> to Town Hall, change to <b>T4</b> → Bondi Junction, then <b>bus 333</b></td><td data-l="Time">~1h15<br><span style="color:var(--ink-3);font-size:13px">2 changes</span></td><td data-l="When" class="num">optional</td></tr>
+  <tr><td><b>Pymble → Sydney Fish Market</b></td><td data-l="Route"><b>Drive</b> — you'll be carrying an esky full of seafood</td><td data-l="Time">~30 min by car</td><td data-l="When" class="num">Thu 24, 05:30</td></tr>
+  <tr><td>&nbsp;&nbsp;<span style="color:var(--ink-3)">…or by transport</span></td><td data-l="Route"><b>T1</b> to Town Hall, change to <b>L1 light rail</b> → Fish Market</td><td data-l="Time">~55 min</td><td data-l="When" class="num">Thu 24</td></tr>
+  <tr><td><b>Pymble → Georges Heights</b>, Mosman</td><td data-l="Route"><b>Drive</b>, or lift from family. By transport: train to Wynyard then <b>bus M30</b> — about an hour, and parking is gone by noon.</td><td data-l="Time">~30 min by car</td><td data-l="When" class="num">Sat 26, arrive by noon</td></tr>
+  <tr><td><b>Pymble → Palm Beach</b></td><td data-l="Route">Drive north up the peninsula</td><td data-l="Time">~50 min</td><td data-l="When" class="num">Sun 27</td></tr>
+  <tr><td><b>Pymble → Sydney Airport</b></td><td data-l="Route"><b>Pre-booked maxi cab</b> — leave by 18:00 for holiday traffic</td><td data-l="Time">~45–60 min<br><span style="color:var(--ink-3);font-size:13px">~A$130</span></td><td data-l="When" class="num">Tue 29, 18:00</td></tr>
+</table>
+
+<h3 style="font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:40px 0 10px">The road trip — driving legs</h3>
+
+<table class="rt">
+  <tr><th>Leg</th><th>Route</th><th>Distance</th><th style="text-align:right">Time</th></tr>
+  <tr><td><b>Hornsby → Shoal Bay</b></td><td data-l="Route">M1 Pacific Motorway north, then Nelson Bay Road</td><td data-l="Distance">~200 km</td><td data-l="When" class="num">2h15<br><span style="color:var(--ink-3);font-size:13px">longer after 09:00</span></td></tr>
+  <tr><td><b>Shoal Bay → Pokolbin</b></td><td data-l="Route">Nelson Bay Road, then inland via Cessnock</td><td data-l="Distance">~85 km</td><td data-l="When" class="num">1h15</td></tr>
+  <tr><td><b>Pokolbin → Katoomba</b></td><td data-l="Route">Broke → <b>Putty Road</b> → Windsor → <b>Bells Line of Road</b> → Mt Victoria</td><td data-l="Distance">~250 km</td><td data-l="When" class="num">4h<br><span style="color:var(--ink-3);font-size:13px">with stops — fill up first</span></td></tr>
+  <tr><td><b>Katoomba → Hornsby</b></td><td data-l="Route">Great Western Highway, M4, M2</td><td data-l="Distance">~130 km</td><td data-l="When" class="num">1h50<br><span style="color:var(--ink-3);font-size:13px">car back by 12:00</span></td></tr>
+  <tr><td colspan="2"><b>Total driving</b></td><td data-l="Route">~665 km</td><td data-l="Time" class="num">~9h over five days</td></tr>
+</table>
+
+<div class="flags">
+  <div class="flag">
+    <b>Two driving notes that matter</b>
+    <p><b>The Putty Road has almost no petrol stations</b> — fill up in Pokolbin before you leave, not on the way. And <b>watch for kangaroos at dawn and dusk</b> on the Putty Road and the Blue Mountains stretches; avoid driving those roads after dark if you can. Sydney's motorways are all electronically tolled with no cash booths — the hire car carries a tag, but ask what the daily admin fee is.</p>
+  </div>
+</div>
+
 <!-- ============ TOKYO ============ -->
+<div class="flags" style="margin:0 0 4px">
+  <div class="flag" style="border-left-color:var(--plum);background:var(--plum-soft)">
+    <b>Vote on it as a family</b>
+    <p>Pick your name in the bar above, then thumbs-up or thumbs-down any item. When you're done hit <b>Copy our votes link</b> and send it round — whoever opens that link sees everyone's votes already filled in, and can add their own on top. Votes live in the link itself, so there's nothing to install and nothing to log into. Closing the tab without copying the link loses them.</p>
+  </div>
+</div>
 <h2 id="tokyo">Leg one · Japan</h2>
 <p class="lede">Tokyo — three nights, two and a half usable days</p>
 <p class="intro">You land at 08:45 on Sunday and leave before dawn on Wednesday, so the arrival morning has to count. Each day below stays inside one part of the city rather than criss-crossing it. Expect 12°C, bone-dry air, brilliant sunshine — and sunset at 16:30, which is why the illuminations do so much work here.</p>
@@ -246,18 +407,31 @@
 <details class="day" open>
   <summary>
     <div class="d-date">Sun<b>13</b>Dec</div>
-    <div class="d-title">Arrival, and west Tokyo<small>Meiji Jingu · Harajuku · Shibuya Sky at sunset</small></div>
+    <div class="d-title">Arrival day, on your own doorstep<small>Koishikawa Korakuen · Kagurazaka · Shibuya Sky at sunset</small></div>
     <div class="chev">▾</div>
   </summary>
   <div class="d-body"><div class="sched">
-    <div class="slot"><time>08:45</time><div class="what"><b>Land at Haneda T3</b><span>Allow an hour. Register on Visit Japan Web before you fly and you use the fast-track QR lanes instead of paper forms.</span></div></div>
-    <div class="slot"><time>10:00</time><div class="what"><b>Buy IC cards, then head into town</b><span>Welcome Suica or Pasmo Passport at the airport — they work on every train, bus and konbini in Japan. Airport Limousine Bus or the Keikyu line to the hotel; drop bags, rooms won't be ready.</span></div></div>
-    <div class="slot"><time>12:00</time><div class="what"><b>Meiji Jingu<span class="tag t-free">Free</span></b><span>The great cedar approach through Yoyogi Park. Calm, green, and exactly the right pace for people fresh off thirteen hours in the air. Sunday afternoons often bring wedding processions through the courtyard.</span></div></div>
-    <div class="slot"><time>13:30</time><div class="what"><b>Lunch on Omotesando, then Takeshita Street</b><span>Tokyo's most expensive shopping avenue and its most chaotic teenage alley, four minutes apart. Worth doing both for the whiplash.</span></div></div>
-    <div class="slot"><time>15:30</time><div class="what"><b>Shibuya Sky<span class="tag t-book">Book ahead</span></b><span>Take a slot around 16:00 and you'll be on the open-air rooftop as the sun drops behind Fuji at 16:30. The view everyone remembers.</span></div></div>
-    <div class="slot"><time>17:30</time><div class="what"><b>Shibuya Crossing, then the blue illumination<span class="tag t-free">Free</span></b><span>Ao no Dokutsu — 250 metres of zelkova trees under blue LEDs in Yoyogi Park, running through December, 17:00–22:00.</span></div></div>
-    <div class="slot"><time>19:00</time><div class="what"><b>Dinner in Nonbei Yokocho</b><span>The alley of tiny bars behind Shibuya station. If everyone's flagging, a straightforward tonkatsu or ramen place near the hotel does the job just as well.</span></div></div>
-    <div class="slot"><time>21:00</time><div class="what"><b>Stop</b><span>Everyone will want to push on. Don't. Getting to sleep on Japan time tonight is what buys you Monday and Tuesday.</span></div></div>
+    <div class="slot"><time>08:45</time><div class="what"><b>Land at Haneda T3</b><span>Allow an hour. Register on Visit Japan Web before you fly and you use the fast-track QR lanes instead of paper forms.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#E9382F">Keikyu Airport</span> Haneda T3 → Daimon, change <span class="ln" style="--c:#B6007A">Toei Oedo E</span> → Iidabashi ·<b>~50 min, 1 change</b></div>
+    <div class="slot"><time>10:00</time><div class="what"><b>Buy IC cards</b><span>Welcome Suica or Pasmo Passport at the airport — they work on every train, bus and konbini in Japan.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#7c8794">Walk</span> Edmont is 5 min from Iidabashi station ·<b>bag drop</b></div>
+    <div class="slot"><time>11:00</time><div class="what"><b>Drop bags at the Edmont</b><span>Check-in isn't until 15:00, so today spends the gap on the hotel's doorstep rather than crossing town twice on your most tired day.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#7c8794">Walk</span> West side of Iidabashi, past Tokyo Dome ·<b>8 min</b></div>
+    <div class="slot"><time>11:15</time><div class="what"><b>Koishikawa Korakuen <a class="ext" href="https://www.tokyo-park.or.jp/teien/en/koishikawa/" target="_blank" rel="noopener" title="Official site">↗</a></b><span>¥300, open 09:00–17:00. Tokyo's oldest surviving garden, laid out in the 1600s — three ponds, dozens of maples, and Tokyo Dome rising absurdly behind the trees. Autumn colour peaks in late November, so you may catch the last of it.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#7c8794">Walk</span> Back up the hill into Kagurazaka ·<b>10 min</b></div>
+    <div class="slot"><time>12:30</time><div class="what"><b>Lunch in Kagurazaka <a class="ext" href="https://www.gotokyo.org/en/destinations/central-tokyo/kagurazaka/index.html" target="_blank" rel="noopener" title="Official site">↗</a></b><span>The main slope closes to traffic from noon on Sundays, so the street is yours. A former geisha quarter that picked up a French accent from the two French schools nearby — bistros and patisseries next door to old izakaya.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#7c8794">Walk</span> Up the slope to Akagi Shrine ·<b>5 min</b></div>
+    <div class="slot"><time>14:00</time><div class="what"><b>Akagi Shrine <a class="ext" href="https://www.gotokyo.org/en/destinations/central-tokyo/kagurazaka/index.html" target="_blank" rel="noopener" title="Official site">↗</a></b><span>Rebuilt by Kengo Kuma in wood and glass. The cobbled lanes behind it still hold Edo-period geisha houses.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#7c8794">Walk</span> Back to the hotel to check in ·<b>6 min</b></div>
+    <div class="slot"><time>15:00</time><div class="what"><b>Check in</b><span>Shower, change, twenty minutes horizontal. Do not lie down for longer.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln dk" style="--c:#FFD400">JR Chuo-Sobu</span> Iidabashi → Yoyogi, change <span class="ln dk" style="--c:#80C241">JR Yamanote</span> → Shibuya ·<b>~20 min, 1 change</b></div>
+    <div class="slot"><time>16:20</time><div class="what"><b>Shibuya Sky<span class="tag t-book">Book ahead</span> <a class="ext" href="https://www.shibuya-scramble-square.com/sky/en/" target="_blank" rel="noopener" title="Official site">↗</a></b><span>Book the slot in advance and you'll be on the open-air rooftop as the sun drops behind Fuji at 16:30. The view everyone remembers.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#7c8794">Walk</span> Down to the crossing, then Yoyogi Park ·<b>10 min</b></div>
+    <div class="slot"><time>17:30</time><div class="what"><b>Shibuya Crossing, then the blue illumination<span class="tag t-free">Free</span> <a class="ext" href="https://www.gotokyo.org/en/story/guide/december/index.html" target="_blank" rel="noopener" title="Official site">↗</a></b><span>Ao no Dokutsu — 250 metres of zelkova trees under blue LEDs in Yoyogi Park, 17:00–22:00 through December.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#7c8794">Walk</span> Nonbei Yokocho is behind Shibuya station ·<b>8 min</b></div>
+    <div class="slot"><time>19:00</time><div class="what"><b>Dinner in Nonbei Yokocho</b><span>The alley of tiny bars behind Shibuya station. Or come back to Kagurazaka and eat five minutes from your bed, which on night one is no bad thing.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln dk" style="--c:#80C241">JR Yamanote</span> Shibuya → Yoyogi, change <span class="ln dk" style="--c:#FFD400">JR Chuo-Sobu</span> → Iidabashi ·<b>~20 min</b></div>
+    <div class="slot"><time>21:00</time><div class="what"><b>Stop</b><span>Everyone will want to push on. Don't. Getting to sleep on Japan time tonight is what buys you Monday and Tuesday. <em>Meiji Jingu and Harajuku aren't in this version — they'd mean crossing town twice today. Slot them into Monday afternoon in place of Akihabara if you want them.</em></span><div class="vote"></div></div></div>
   </div></div>
 </details>
 
@@ -268,14 +442,22 @@
     <div class="chev">▾</div>
   </summary>
   <div class="d-body"><div class="sched">
-    <div class="slot"><time>07:00</time><div class="what"><b>Breakfast at Tsukiji Outer Market</b><span>Tamagoyaki, grilled scallops, sea urchin, tuna. Go early — by ten it's shoulder to shoulder. The wholesale market moved to Toyosu; the outer market is the one you want.</span></div></div>
-    <div class="slot"><time>09:00</time><div class="what"><b>Hamarikyu Gardens</b><span>A 17th-century daimyo garden with skyscrapers rising behind it, and tea in the teahouse on the pond.</span></div></div>
-    <div class="slot"><time>10:30</time><div class="what"><b>Sumida River boat to Asakusa</b><span>Twenty minutes from the pier inside the gardens, and a far better way to arrive than the subway.</span></div></div>
-    <div class="slot"><time>11:30</time><div class="what"><b>Senso-ji and Nakamise-dori<span class="tag t-free">Free</span></b><span>Tokyo's oldest temple, and the best street in the city for snacks and souvenirs.</span></div></div>
-    <div class="slot"><time>13:30</time><div class="what"><b>Lunch, then Tokyo Skytree</b><span>Fifteen minutes' walk. Optional — if Shibuya Sky scratched that itch, one tower is usually enough.</span></div></div>
-    <div class="slot"><time>15:30</time><div class="what"><b>Akihabara, or Ueno</b><span>Electric Town for the spectacle, or Ueno for the museums and the park. A good moment for Eva and Isaac to peel off — the trains make that easy.</span></div></div>
-    <div class="slot"><time>17:00</time><div class="what"><b>Marunouchi Illumination<span class="tag t-free">Free</span></b><span>Champagne-gold lights the length of Nakadori Street beside Tokyo Station, lit until 23:00 in December. The most elegant of the city's winter displays.</span></div></div>
-    <div class="slot"><time>19:00</time><div class="what"><b>Dinner in Ginza, or under Tokyo Station</b><span>Ramen Street in the station basement is excellent and costs almost nothing.</span></div></div>
+    <div class="slot"><time>07:00</time><div class="what"><b>Breakfast at Tsukiji Outer Market <a class="ext" href="https://www.tsukiji.or.jp/english/" target="_blank" rel="noopener" title="Official site">↗</a></b><span>Tamagoyaki, grilled scallops, sea urchin, tuna. Go early — by ten it's shoulder to shoulder. The wholesale market moved to Toyosu; the outer market is the one you want.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#7c8794">Walk</span> Hamarikyu is next door, across the road ·<b>10 min</b></div>
+    <div class="slot"><time>09:00</time><div class="what"><b>Hamarikyu Gardens <a class="ext" href="https://www.tokyo-park.or.jp/teien/en/hama-rikyu/" target="_blank" rel="noopener" title="Official site">↗</a></b><span>A 17th-century daimyo garden with skyscrapers rising behind it, and tea in the teahouse on the pond.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#1d6b6b">River boat</span> Tokyo Cruise from the pier inside the gardens ·<b>~25 min</b></div>
+    <div class="slot"><time>10:30</time><div class="what"><b>Sumida River boat to Asakusa <a class="ext" href="https://www.suijobus.co.jp/en/" target="_blank" rel="noopener" title="Official site">↗</a></b><span>Twenty minutes from the pier inside the gardens, and a far better way to arrive than the subway.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#7c8794">Walk</span> Pier to Nakamise-dori ·<b>5 min</b></div>
+    <div class="slot"><time>11:30</time><div class="what"><b>Senso-ji and Nakamise-dori<span class="tag t-free">Free</span> <a class="ext" href="https://www.senso-ji.jp/english/" target="_blank" rel="noopener" title="Official site">↗</a></b><span>Tokyo's oldest temple, and the best street in the city for snacks and souvenirs.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#7c8794">Walk</span> Across the Sumida to Skytree, or <span class="ln" style="--c:#0F6CB6">Tobu Skytree</span> one stop ·<b>15 min</b></div>
+    <div class="slot"><time>13:30</time><div class="what"><b>Lunch, then Tokyo Skytree <a class="ext" href="https://www.tokyo-skytree.jp/en/" target="_blank" rel="noopener" title="Official site">↗</a></b><span>Fifteen minutes' walk. Optional — if Shibuya Sky scratched that itch, one tower is usually enough.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#E85298">Toei Asakusa</span> Oshiage → Nihombashi, change <span class="ln dk" style="--c:#FF9500">Metro Ginza G</span> → Ueno / Akihabara ·<b>~20 min</b></div>
+    <div class="slot"><time>15:30</time><div class="what"><b>Akihabara, or Ueno</b><span>Electric Town for the spectacle, or Ueno for the museums and the park. A good moment for Eva and Isaac to peel off — the trains make that easy.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln dk" style="--c:#FF9500">Metro Ginza G</span> → Nihombashi, change <span class="ln" style="--c:#009BBF">Metro Tozai T</span> → Otemachi ·<b>~15 min</b></div>
+    <div class="slot"><time>17:00</time><div class="what"><b>Marunouchi Illumination<span class="tag t-free">Free</span> <a class="ext" href="https://www.marunouchi.com/e/" target="_blank" rel="noopener" title="Official site">↗</a></b><span>Champagne-gold lights the length of Nakadori Street beside Tokyo Station, lit until 23:00 in December. The most elegant of the city's winter displays.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#7c8794">Walk</span> Nakadori runs into Tokyo Station and Ginza ·<b>5–15 min</b></div>
+    <div class="slot"><time>19:00</time><div class="what"><b>Dinner in Ginza, or under Tokyo Station</b><span>Ramen Street in the station basement is excellent and costs almost nothing.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#009BBF">Metro Tozai T</span> Otemachi → Iidabashi, direct ·<b>~10 min</b></div>
   </div></div>
 </details>
 
@@ -286,12 +468,16 @@
     <div class="chev">▾</div>
   </summary>
   <div class="d-body"><div class="sched">
-    <div class="slot"><time>09:00</time><div class="what"><b>teamLab Borderless, Azabudai Hills<span class="tag t-book">Book first</span></b><span>Digital art that moves between rooms while you walk through it. Tickets release monthly and sell out weeks ahead — this is the one thing to book the moment your dates are firm.</span></div></div>
-    <div class="slot"><time>12:00</time><div class="what"><b>Zojo-ji and Tokyo Tower</b><span>A short walk away. The temple gate in the foreground with the orange tower behind it is the photograph.</span></div></div>
-    <div class="slot"><time>13:30</time><div class="what"><b>Imperial Palace East Gardens<span class="tag t-free">Free</span></b><span>The old castle keep foundations are worth the walk. Closed Mondays and Fridays, which is exactly why it sits on a Tuesday.</span></div></div>
-    <div class="slot"><time>15:30</time><div class="what"><b>Ginza, for the last of the shopping</b><span>Itoya for stationery, the Uniqlo flagship, and the depachika food halls under Mitsukoshi and Matsuya for edible gifts that survive the flight.</span></div></div>
-    <div class="slot"><time>17:00</time><div class="what"><b>Back to the hotel — confirm tomorrow's taxi</b><span>05:30 pickup, jumbo vehicle, front desk will have booked it.</span></div></div>
-    <div class="slot"><time>18:30</time><div class="what"><b>Last dinner in Kagurazaka</b><span>Then pack properly, passports and ETA confirmations out, early night. Alarm 05:00.</span></div></div>
+    <div class="slot"><time>09:00</time><div class="what"><b>teamLab Borderless, Azabudai Hills<span class="tag t-book">Book first</span> <a class="ext" href="https://www.teamlab.art/e/tokyo/" target="_blank" rel="noopener" title="Official site">↗</a></b><span>Digital art that moves between rooms while you walk through it. Tickets release monthly and sell out weeks ahead — this is the one thing to book the moment your dates are firm.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#7c8794">Walk</span> Azabudai Hills → Zojo-ji and the tower ·<b>15 min</b></div>
+    <div class="slot"><time>12:00</time><div class="what"><b>Zojo-ji and Tokyo Tower <a class="ext" href="https://www.tokyotower.co.jp/en/" target="_blank" rel="noopener" title="Official site">↗</a></b><span>A short walk away. The temple gate in the foreground with the orange tower behind it is the photograph.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#B6007A">Toei Oedo E</span> Akabanebashi → Kasuga, change <span class="ln" style="--c:#009BBF">Metro Tozai T</span> at Otemachi → Takebashi ·<b>~25 min</b></div>
+    <div class="slot"><time>13:30</time><div class="what"><b>Imperial Palace East Gardens<span class="tag t-free">Free</span> <a class="ext" href="https://www.kunaicho.go.jp/e-event/higashigyoen02.html" target="_blank" rel="noopener" title="Official site">↗</a></b><span>The old castle keep foundations are worth the walk. Closed Mondays and Fridays, which is exactly why it sits on a Tuesday.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#7c8794">Walk</span> Out of Otemachi gate, down to Ginza ·<b>20 min, or 2 stops</b></div>
+    <div class="slot"><time>15:30</time><div class="what"><b>Ginza, for the last of the shopping <a class="ext" href="https://www.ito-ya.co.jp/ginza/en/" target="_blank" rel="noopener" title="Official site">↗</a></b><span>Itoya for stationery, the Uniqlo flagship, and the depachika food halls under Mitsukoshi and Matsuya for edible gifts that survive the flight.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#B39B5E">Metro Yurakucho Y</span> Ginza-itchome → Iidabashi, direct ·<b>~10 min</b></div>
+    <div class="slot"><time>17:00</time><div class="what"><b>Back to the hotel — confirm tomorrow's taxi</b><span>05:30 pickup, jumbo vehicle, front desk will have booked it.</span><div class="vote"></div></div></div>
+    <div class="slot"><time>18:30</time><div class="what"><b>Last dinner in Kagurazaka</b><span>Then pack properly, passports and ETA confirmations out, early night. Alarm 05:00.</span><div class="vote"></div></div></div>
   </div></div>
 </details>
 
@@ -302,10 +488,10 @@
     <div class="chev">▾</div>
   </summary>
   <div class="d-body"><div class="sched">
-    <div class="slot"><time>05:00</time><div class="what"><b>Alarm</b></div></div>
-    <div class="slot"><time>05:30</time><div class="what"><b>Pre-booked jumbo taxi</b><span>Empty roads, clear expressway, 35–45 minutes. About ¥18,200 for the party including tolls and the late-night premium.</span></div></div>
-    <div class="slot"><time>06:10</time><div class="what"><b>Terminal 3</b><span>Counters open 06:25, cut-off 07:35 — an hour of slack.</span></div></div>
-    <div class="slot"><time>08:35</time><div class="what"><b>NH889 departs</b><span>Landing in Sydney at 20:15, into high summer.</span></div></div>
+    <div class="slot"><time>05:00</time><div class="what"><b>Alarm</b><div class="vote"></div></div></div>
+    <div class="slot"><time>05:30</time><div class="what"><b>Pre-booked jumbo taxi</b><span>Empty roads, clear expressway, 35–45 minutes. About ¥18,200 for the party including tolls and the late-night premium.</span><div class="vote"></div></div></div>
+    <div class="slot"><time>06:10</time><div class="what"><b>Terminal 3</b><span>Counters open 06:25, cut-off 07:35 — an hour of slack.</span><div class="vote"></div></div></div>
+    <div class="slot"><time>08:35</time><div class="what"><b>NH889 departs</b><span>Landing in Sydney at 20:15, into high summer.</span><div class="vote"></div></div></div>
   </div></div>
 </details>
 
@@ -333,9 +519,10 @@
   <summary><div class="d-date">Wed<b>16</b>Dec</div>
     <div class="d-title">Arrive Sydney<small>Landing 20:15 · at Pymble by about 22:00</small></div><div class="chev">▾</div></summary>
   <div class="d-body"><div class="sched">
-    <div class="slot"><time>20:15</time><div class="what"><b>Through T1</b><span>Declare anything edible. Australian biosecurity is not a formality and the fines are real.</span></div></div>
-    <div class="slot"><time>21:15</time><div class="what"><b>To Pymble</b><span>Pre-book a maxi cab if your brother isn't collecting — about A$130. The train means a change at Central plus the airport access fee, and is miserable with eight bags at half nine at night.</span></div></div>
-    <div class="slot"><time>—</time><div class="what"><b>Repack tonight</b><span>One bag each for the road trip. The rest stays at your brother's for a week.</span></div></div>
+    <div class="slot"><time>20:15</time><div class="what"><b>Through T1</b><span>Declare anything edible. Australian biosecurity is not a formality and the fines are real.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#8a6d3b">Taxi</span> Pre-booked maxi cab, M1 north ·<b>~45 min, ~A$130</b></div>
+    <div class="slot"><time>21:15</time><div class="what"><b>To Pymble</b><span>Pre-book a maxi cab if your brother isn't collecting — about A$130. The train means a change at Central plus the airport access fee, and is miserable with eight bags at half nine at night.</span><div class="vote"></div></div></div>
+    <div class="slot"><time>—</time><div class="what"><b>Repack tonight</b><span>One bag each for the road trip. The rest stays at your brother's for a week.</span><div class="vote"></div></div></div>
   </div></div>
 </details>
 
@@ -343,8 +530,9 @@
   <summary><div class="d-date">Thu<b>17</b>Dec</div>
     <div class="d-title">Recover<span class="tag t-fam">Nothing planned</span><small>Five days of travelling behind you</small></div><div class="chev">▾</div></summary>
   <div class="d-body"><div class="sched">
-    <div class="slot"><time>—</time><div class="what"><b>Deliberately empty</b><span>You're eleven hours ahead of London and the body knows it. Sleep, eat, sit in the garden, repack one bag each for the road.</span></div></div>
-    <div class="slot"><time>Maybe</time><div class="what"><b>Ku-ring-gai Chase, if anyone's restless<span class="tag t-free">Free</span></b><span>Twenty minutes away. Bobbin Head for the mangrove boardwalk and a swim, or West Head for the view down Pittwater.</span></div></div>
+    <div class="slot"><time>—</time><div class="what"><b>Deliberately empty</b><span>You're eleven hours ahead of London and the body knows it. Sleep, eat, sit in the garden, repack one bag each for the road.</span><div class="vote"></div></div></div>
+    <div class="slot"><time>Maybe</time><div class="what"><b>Ku-ring-gai Chase, if anyone's restless<span class="tag t-free">Free</span> <a class="ext" href="https://www.nationalparks.nsw.gov.au/visit-a-park/parks/ku-ring-gai-chase-national-park" target="_blank" rel="noopener" title="Official site">↗</a></b><span>Twenty minutes away. Bobbin Head for the mangrove boardwalk and a swim, or West Head for the view down Pittwater.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#4f5c6b">Drive</span> Bobbin Head or West Head ·<b>20–35 min</b></div>
   </div></div>
 </details>
 
@@ -352,10 +540,11 @@
   <summary><div class="d-date">Fri<b>18</b>Dec</div>
     <div class="d-title">North to Shoal Bay<span class="tag t-book">Book now</span><small>Collect the car · 2h15, 200 km up the M1</small></div><div class="chev">▾</div></summary>
   <div class="d-body"><div class="sched">
-    <div class="slot"><time>08:00</time><div class="what"><b>Collect the car at Hornsby, and go</b><span>NSW school holidays start today, so the M1 north fills from mid-morning. Early is the whole trick.</span></div></div>
-    <div class="slot"><time>12:00</time><div class="what"><b>Shoal Bay</b><span>Your brother's steer is good — Shoal Bay beats Nelson Bay if you want the beach rather than the marina. It sits at the eastern end with <b>Tomaree Head rising straight behind it</b>, so tomorrow's walk starts at your door.</span></div></div>
-    <div class="slot"><time>—</time><div class="what"><b>The Ramada</b><span>Ramada Resort by Wyndham Shoal Bay is on the beachfront and does one, two and three-bedroom apartments — so a <b>two-bedroom apartment</b> gives you a kitchen and living room for less than separate rooms, exactly as in the Blue Mountains.</span></div></div>
-    <div class="slot"><time>18:00</time><div class="what"><b>Swim, then dinner on the beachfront</b><span>Shoal Bay Country Club or the strip.</span></div></div>
+    <div class="slot"><time>08:00</time><div class="what"><b>Collect the car at Hornsby, and go</b><span>NSW school holidays start today, so the M1 north fills from mid-morning. Early is the whole trick.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#4f5c6b">Drive</span> M1 Pacific Motorway north, then Nelson Bay Rd ·<b>2h15 · 200 km</b></div>
+    <div class="slot"><time>12:00</time><div class="what"><b>Shoal Bay</b><span>Your brother's steer is good — Shoal Bay beats Nelson Bay if you want the beach rather than the marina. It sits at the eastern end with <b>Tomaree Head rising straight behind it</b>, so tomorrow's walk starts at your door.</span><div class="vote"></div></div></div>
+    <div class="slot"><time>—</time><div class="what"><b>The Ramada</b><span>Ramada Resort by Wyndham Shoal Bay is on the beachfront and does one, two and three-bedroom apartments — so a <b>two-bedroom apartment</b> gives you a kitchen and living room for less than separate rooms, exactly as in the Blue Mountains.</span><div class="vote"></div></div></div>
+    <div class="slot"><time>18:00</time><div class="what"><b>Swim, then dinner on the beachfront</b><span>Shoal Bay Country Club or the strip.</span><div class="vote"></div></div></div>
   </div></div>
 </details>
 
@@ -363,11 +552,13 @@
   <summary><div class="d-date">Sat<b>19</b>Dec</div>
     <div class="d-title">Port Stephens<small>Tomaree Head · the dunes · Fingal Bay</small></div><div class="chev">▾</div></summary>
   <div class="d-body"><div class="sched">
-    <div class="slot"><time>07:30</time><div class="what"><b>Tomaree Head Summit Walk<span class="tag t-free">Free</span></b><span>Thirty to forty minutes of steep steps from Shoal Bay, and the finest view on the NSW coast at the top — the bay behind, the islands ahead, Zenith and Wreck Beaches below. Go before the heat; there's no shade.</span></div></div>
-    <div class="slot"><time>10:30</time><div class="what"><b>Stockton Bight sand dunes</b><span>Thirty-two kilometres of the largest moving coastal dunes in the southern hemisphere. Quad bikes, sandboarding or a 4WD tour from Anna Bay. The bit Eva and Isaac will still be talking about.</span></div></div>
-    <div class="slot"><time>14:00</time><div class="what"><b>Fingal Bay</b><span>Quieter than Shoal Bay, a beautiful curve of sand, good for a long swim.</span></div></div>
-    <div class="slot"><time>⚠️</time><div class="what"><b>The Fingal Spit crossing — please read this one</b><span>The sand spit out to Fingal Island looks like an easy walk. <b>Seventeen people have died attempting it.</b> The bar doesn't always surface even at low tide, and people who start across shallow water find it above waist height with strong currents within minutes. Only go if the bar is <em>completely</em> dry, two hours before low tide, in slight swell — and turn back the moment water appears. It's 8.6 km return with no shade anywhere. <b>If in doubt, don't</b> — the beach itself is lovely and entirely safe.</span></div></div>
-    <div class="slot"><time>16:00</time><div class="what"><b>Dolphin cruise, or stay on the sand</b><span>Resident bottlenose population at Nelson Bay, sightings close to guaranteed.</span></div></div>
+    <div class="slot"><time>07:30</time><div class="what"><b>Tomaree Head Summit Walk<span class="tag t-free">Free</span> <a class="ext" href="https://www.nationalparks.nsw.gov.au/things-to-do/walking-tracks/tomaree-head-summit-walk" target="_blank" rel="noopener" title="Official site">↗</a></b><span>2.2 km return, and NSW National Parks grades it <b>5 — challenging</b>: allow <b>1½–2 hours</b>, not the half-hour it looks. Steep steps from Shoal Bay, and the finest view on the NSW coast at the top — the bay behind, the islands ahead, Zenith and Wreck Beaches below. Go before the heat; there's no shade.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#4f5c6b">Drive</span> Shoal Bay → Anna Bay for the dunes ·<b>20 min</b></div>
+    <div class="slot"><time>10:30</time><div class="what"><b>Stockton Bight sand dunes <a class="ext" href="https://www.portstephens.org.au/" target="_blank" rel="noopener" title="Official site">↗</a></b><span>Thirty-two kilometres of the largest moving coastal dunes in the southern hemisphere. Quad bikes, sandboarding or a 4WD tour from Anna Bay. The bit Eva and Isaac will still be talking about.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#4f5c6b">Drive</span> Anna Bay → Fingal Bay ·<b>15 min</b></div>
+    <div class="slot"><time>14:00</time><div class="what"><b>Fingal Bay <a class="ext" href="https://www.visitnsw.com/destinations/north-coast/port-stephens-area/attractions/fingal-bay-beach" target="_blank" rel="noopener" title="Official site">↗</a></b><span>Quieter than Shoal Bay, a beautiful curve of sand, good for a long swim.</span><div class="vote"></div></div></div>
+    <div class="slot"><time>⚠️</time><div class="what"><b>The Fingal Spit crossing — please read this one</b><span>The sand spit out to Fingal Island looks like an easy walk. <b>Seventeen people have died attempting it.</b> The bar doesn't always surface even at low tide, and people who start across shallow water find it above waist height with strong currents within minutes. Only go if the bar is <em>completely</em> dry, two hours before low tide, in slight swell — and turn back the moment water appears. It's 8.6 km return with no shade anywhere. <b>If in doubt, don't</b> — the beach itself is lovely and entirely safe.</span><div class="vote"></div></div></div>
+    <div class="slot"><time>16:00</time><div class="what"><b>Dolphin cruise, or stay on the sand</b><span>Resident bottlenose population at Nelson Bay, sightings close to guaranteed.</span><div class="vote"></div></div></div>
   </div></div>
 </details>
 
@@ -375,10 +566,11 @@
   <summary><div class="d-date">Sun<b>20</b>Dec</div>
     <div class="d-title">Inland to the Hunter Valley<span class="tag t-book">Book a driver</span><small>1h15, 85 km · one night, so make it count</small></div><div class="chev">▾</div></summary>
   <div class="d-body"><div class="sched">
-    <div class="slot"><time>Morning</time><div class="what"><b>One more beach, then go</b><span>The drive is short — no rush.</span></div></div>
-    <div class="slot"><time>13:00</time><div class="what"><b>Pokolbin</b><span>Australia's oldest wine region. Both Eva and Isaac are of legal drinking age here, so it works for all four of you.</span></div></div>
-    <div class="slot"><time>14:30</time><div class="what"><b>Cellar doors, with a driver</b><span>Small-group tour or private car, roughly A$120–180 a head, so nobody has to abstain. <b>Tyrrell's</b> — fifth-generation, the benchmark for Hunter Semillon, which tastes like nothing else and ages extraordinarily. Then Brokenwood, Audrey Wilkinson for the view, Mount Pleasant, Tulloch.</span></div></div>
-    <div class="slot"><time>19:30</time><div class="what"><b>Hunter Valley Gardens Christmas Lights<span class="tag t-book">Ticketed</span></b><span>Runs through December and is genuinely enormous.</span></div></div>
+    <div class="slot"><time>Morning</time><div class="what"><b>One more beach, then go</b><span>The drive is short — no rush.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#4f5c6b">Drive</span> Nelson Bay Rd, then inland via Cessnock ·<b>1h15 · 85 km</b></div>
+    <div class="slot"><time>13:00</time><div class="what"><b>Pokolbin</b><span>Australia's oldest wine region. Both Eva and Isaac are of legal drinking age here, so it works for all four of you.</span><div class="vote"></div></div></div>
+    <div class="slot"><time>14:30</time><div class="what"><b>Cellar doors, with a driver <a class="ext" href="https://tyrrells.com.au/" target="_blank" rel="noopener" title="Official site">↗</a></b><span>Small-group tour or private car, roughly A$120–180 a head, so nobody has to abstain. <b>Tyrrell's</b> — fifth-generation, the benchmark for Hunter Semillon, which tastes like nothing else and ages extraordinarily. Then Brokenwood, Audrey Wilkinson for the view, Mount Pleasant, Tulloch.</span><div class="vote"></div></div></div>
+    <div class="slot"><time>19:30</time><div class="what"><b>Hunter Valley Gardens Christmas Lights<span class="tag t-book">Ticketed</span> <a class="ext" href="https://www.huntervalleygardens.com.au/" target="_blank" rel="noopener" title="Official site">↗</a></b><span>Runs through December and is genuinely enormous.</span><div class="vote"></div></div></div>
   </div></div>
 </details>
 
@@ -386,11 +578,13 @@
   <summary><div class="d-date">Mon<b>21</b>Dec</div>
     <div class="d-title">The Putty Road to the Blue Mountains<small>The best day's driving of the trip · 4h with stops, 250 km</small></div><div class="chev">▾</div></summary>
   <div class="d-body"><div class="sched">
-    <div class="slot"><time>09:00</time><div class="what"><b>Slow breakfast, one last cellar door</b><span>To <em>buy</em> rather than taste — you're driving.</span></div></div>
-    <div class="slot"><time>11:00</time><div class="what"><b>Fill up in Pokolbin, out through Broke</b><span>Few towns on the Putty Road and fewer petrol stations. This matters.</span></div></div>
-    <div class="slot"><time>11:30</time><div class="what"><b>The Putty Road</b><span>160 km of empty ridgeline and forest between the Hunter and Windsor — one of Australia's great drives. Grey Gum Café at the halfway point is the traditional stop.</span></div></div>
-    <div class="slot"><time>15:00</time><div class="what"><b>Bells Line of Road</b><span>From Windsor, climb west through Kurrajong and Bilpin — apple country, stop for a pie — to Mount Victoria, then down to Katoomba or Leura.</span></div></div>
-    <div class="slot"><time>19:30</time><div class="what"><b>Lincoln's Rock at sunset<span class="tag t-free">Free</span></b><span>At Wentworth Falls, and you can drive almost to the edge. Only if anyone has energy left.</span></div></div>
+    <div class="slot"><time>09:00</time><div class="what"><b>Slow breakfast, one last cellar door</b><span>To <em>buy</em> rather than taste — you're driving.</span><div class="vote"></div></div></div>
+    <div class="slot"><time>11:00</time><div class="what"><b>Fill up in Pokolbin, out through Broke</b><span>Few towns on the Putty Road and fewer petrol stations. This matters.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#4f5c6b">Drive</span> The Putty Road to Windsor ·<b>2h30 · 160 km</b></div>
+    <div class="slot"><time>11:30</time><div class="what"><b>The Putty Road</b><span>160 km of empty ridgeline and forest between the Hunter and Windsor — one of Australia's great drives. Grey Gum Café at the halfway point is the traditional stop.</span><div class="vote"></div></div></div>
+    <div class="slot"><time>15:00</time><div class="what"><b>Bells Line of Road</b><span>From Windsor, climb west through Kurrajong and Bilpin — apple country, stop for a pie — to Mount Victoria, then down to Katoomba or Leura.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#4f5c6b">Drive</span> Windsor → Bilpin → Mt Victoria → Katoomba ·<b>1h30</b></div>
+    <div class="slot"><time>19:30</time><div class="what"><b>Lincoln's Rock at sunset<span class="tag t-free">Free</span></b><span>At Wentworth Falls, and you can drive almost to the edge. Only if anyone has energy left.</span><div class="vote"></div></div></div>
   </div></div>
 </details>
 
@@ -398,10 +592,12 @@
   <summary><div class="d-date">Tue<b>22</b>Dec</div>
     <div class="d-title">Blue Mountains<small>Three Sisters · Scenic World · Leura</small></div><div class="chev">▾</div></summary>
   <div class="d-body"><div class="sched">
-    <div class="slot"><time>08:00</time><div class="what"><b>Echo Point<span class="tag t-free">Free</span></b><span>The Three Sisters, first thing, before the coaches arrive.</span></div></div>
-    <div class="slot"><time>10:00</time><div class="what"><b>Scenic World</b><span>The steepest passenger railway in the world dropping into the valley, plus the cableway and skyway. Day passes from about A$64. Open 10–4 on weekdays.</span></div></div>
-    <div class="slot"><time>12:30</time><div class="what"><b>Lunch in Leura</b><span>Prettier than Katoomba. The Everglades Gardens if anyone wants an hour of calm.</span></div></div>
-    <div class="slot"><time>14:30</time><div class="what"><b>Wentworth Falls, or Govetts Leap</b><span>The Charles Darwin Walk for a proper hike; Govetts Leap at Blackheath for the most dramatic lookout in the mountains.</span></div></div>
+    <div class="slot"><time>08:00</time><div class="what"><b>Echo Point<span class="tag t-free">Free</span> <a class="ext" href="https://www.visitnsw.com/destinations/blue-mountains/katoomba-area/attractions/three-sisters" target="_blank" rel="noopener" title="Official site">↗</a></b><span>The Three Sisters, first thing, before the coaches arrive.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#7c8794">Walk</span> Echo Point → Scenic World ·<b>12 min, or 5 by car</b></div>
+    <div class="slot"><time>10:00</time><div class="what"><b>Scenic World <a class="ext" href="https://www.scenicworld.com.au/" target="_blank" rel="noopener" title="Official site">↗</a></b><span>The steepest passenger railway in the world dropping into the valley, plus the cableway and skyway. Day passes from about A$64. Open 10–4 on weekdays.</span><div class="vote"></div></div></div>
+    <div class="slot"><time>12:30</time><div class="what"><b>Lunch in Leura</b><span>Prettier than Katoomba. The Everglades Gardens if anyone wants an hour of calm.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#4f5c6b">Drive</span> Leura → Wentworth Falls or Blackheath ·<b>10–20 min</b></div>
+    <div class="slot"><time>14:30</time><div class="what"><b>Wentworth Falls, or Govetts Leap <a class="ext" href="https://www.nationalparks.nsw.gov.au/visit-a-park/parks/blue-mountains-national-park" target="_blank" rel="noopener" title="Official site">↗</a></b><span>The Charles Darwin Walk for a proper hike; Govetts Leap at Blackheath for the most dramatic lookout in the mountains.</span><div class="vote"></div></div></div>
   </div></div>
 </details>
 
@@ -409,8 +605,9 @@
   <summary><div class="d-date">Wed<b>23</b>Dec</div>
     <div class="d-title">Home to Pymble<span class="tag t-fam">Family</span><small>1h45, 110 km · your brother's family finish work today</small></div><div class="chev">▾</div></summary>
   <div class="d-body"><div class="sched">
-    <div class="slot"><time>Morning</time><div class="what"><b>A last lookout, coffee in Leura</b><span>Then down the Great Western Highway.</span></div></div>
-    <div class="slot"><time>13:00</time><div class="what"><b>Back at Pymble — return the car at Hornsby</b><span>Unpack, and switch into Christmas mode.</span></div></div>
+    <div class="slot"><time>Morning</time><div class="what"><b>A last lookout, coffee in Leura</b><span>Then down the Great Western Highway.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#4f5c6b">Drive</span> Great Western Hwy, M4, M2 → Hornsby ·<b>1h50 · 130 km</b></div>
+    <div class="slot"><time>13:00</time><div class="what"><b>Back at Pymble — return the car at Hornsby</b><span>Unpack, and switch into Christmas mode.</span><div class="vote"></div></div></div>
   </div></div>
 </details>
 
@@ -418,8 +615,9 @@
   <summary><div class="d-date">Thu<b>24</b>Dec</div>
     <div class="d-title">Christmas Eve<span class="tag t-fam">Family</span><small>The Fish Market at dawn, the cathedral at night</small></div><div class="chev">▾</div></summary>
   <div class="d-body"><div class="sched">
-    <div class="slot"><time>05:30</time><div class="what"><b>Sydney Fish Market</b><span>The seafood marathon runs from the early hours of the 23rd straight through Christmas Eve — prawns, oysters, bugs, lobster, and several thousand other people. Go early, go with a list, bring an esky. This is your contribution to Christmas lunch.</span></div></div>
-    <div class="slot"><time>20:30</time><div class="what"><b>St Mary's Cathedral light show<span class="tag t-free">Free</span></b><span>Projected onto the cathedral front nightly through Christmas. Carols in Martin Place beforehand; Darling Harbour has the floating tree.</span></div></div>
+    <div class="slot"><time>05:30</time><div class="what"><b>Sydney Fish Market <a class="ext" href="https://www.sydneyfishmarket.com.au/" target="_blank" rel="noopener" title="Official site">↗</a></b><span>The seafood marathon runs from the early hours of the 23rd straight through Christmas Eve — prawns, oysters, bugs, lobster, and several thousand other people. Go early, go with a list, bring an esky. This is your contribution to Christmas lunch.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#DD1E25">Light Rail L1</span> Fish Market → Town Hall, change <span class="ln dk" style="--c:#F99D1C">T1 North Shore</span> → Pymble ·<b>~55 min</b></div>
+    <div class="slot"><time>20:30</time><div class="what"><b>St Mary's Cathedral light show<span class="tag t-free">Free</span> <a class="ext" href="https://www.stmaryscathedral.org.au/" target="_blank" rel="noopener" title="Official site">↗</a></b><span>Projected onto the cathedral front nightly through Christmas. Carols in Martin Place beforehand; Darling Harbour has the floating tree.</span><div class="vote"></div></div></div>
   </div></div>
 </details>
 
@@ -427,8 +625,8 @@
   <summary><div class="d-date">Fri<b>25</b>Dec</div>
     <div class="d-title">Christmas Day<span class="tag t-fam">Family</span><small>Prawns, ham, pavlova, and someone in the pool by two</small></div><div class="chev">▾</div></summary>
   <div class="d-body"><div class="sched">
-    <div class="slot"><time>—</time><div class="what"><b>At the house in Pymble</b><span>An Australian Christmas is cold seafood, a glazed ham and a pavlova, eaten slowly in the heat.</span></div></div>
-    <div class="slot"><time>Morning</time><div class="what"><b>A Christmas swim, if the household fancies it</b><span>A Northern Beaches spot makes a good memory. Bondi on Christmas Day is a well-known backpacker scene rather than a quiet dip — go in knowing that.</span></div></div>
+    <div class="slot"><time>—</time><div class="what"><b>At the house in Pymble</b><span>An Australian Christmas is cold seafood, a glazed ham and a pavlova, eaten slowly in the heat.</span><div class="vote"></div></div></div>
+    <div class="slot"><time>Morning</time><div class="what"><b>A Christmas swim, if the household fancies it</b><span>A Northern Beaches spot makes a good memory. Bondi on Christmas Day is a well-known backpacker scene rather than a quiet dip — go in knowing that.</span><div class="vote"></div></div></div>
   </div></div>
 </details>
 
@@ -436,8 +634,9 @@
   <summary><div class="d-date">Sat<b>26</b>Dec</div>
     <div class="d-title">The Sydney to Hobart start<small>A hundred boats out the Heads under spinnaker, at one o'clock</small></div><div class="chev">▾</div></summary>
   <div class="d-body"><div class="sched">
-    <div class="slot"><time>11:30</time><div class="what"><b>Georges Heights, Mosman<span class="tag t-free">Free</span></b><span>Your side of the harbour, about 30 minutes by car, with a clean view of the fleet running for the Heads. Arrive by noon for a front-row spot. You'll need a lift from family, or the M30 bus from Wynyard.</span></div></div>
-    <div class="slot"><time>13:00</time><div class="what"><b>The start</b><span>Warning gun ten minutes before. The best free spectacle in the Australian calendar. Bring shade, water and a picnic — buy nothing on site.</span></div></div>
+    <div class="slot"><time>11:30</time><div class="what"><b>Georges Heights, Mosman<span class="tag t-free">Free</span> <a class="ext" href="https://rolexsydneyhobart.com/" target="_blank" rel="noopener" title="Official site">↗</a></b><span>Your side of the harbour, about 30 minutes by car, with a clean view of the fleet running for the Heads. Arrive by noon for a front-row spot. You'll need a lift from family, or the M30 bus from Wynyard.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#4f5c6b">Drive</span> Pymble → Mosman, arrive by noon ·<b>~30 min</b></div>
+    <div class="slot"><time>13:00</time><div class="what"><b>The start <a class="ext" href="https://rolexsydneyhobart.com/" target="_blank" rel="noopener" title="Official site">↗</a></b><span>Warning gun ten minutes before. The best free spectacle in the Australian calendar. Bring shade, water and a picnic — buy nothing on site.</span><div class="vote"></div></div></div>
   </div></div>
 </details>
 
@@ -445,9 +644,10 @@
   <summary><div class="d-date">Sun<b>27</b>Dec</div>
     <div class="d-title">The harbour<small>Manly ferry, or north to Palm Beach</small></div><div class="chev">▾</div></summary>
   <div class="d-body"><div class="sched">
-    <div class="slot"><time>10:00</time><div class="what"><b>The Manly ferry<span class="tag t-free">Opal fare</span></b><span>Half an hour past the Opera House and out toward the Heads for the price of a bus ticket. The ferries are public transport, and they beat any paid harbour cruise.</span></div></div>
-    <div class="slot"><time>11:00</time><div class="what"><b>Manly to Shelly Beach, then North Head</b><span>Snorkelling at Shelly if the water's clear; North Head for the whole harbour at once.</span></div></div>
-    <div class="slot"><time>Alt</time><div class="what"><b>If family are driving — Palm Beach</b><span>The Barrenjoey Lighthouse walk, 45 minutes up, for the best view on that coast. Lunch at The Boathouse.</span></div></div>
+    <div class="slot"><time>10:00</time><div class="what"><b>The Manly ferry<span class="tag t-free">Opal fare</span> <a class="ext" href="https://transportnsw.info/travel-info/ways-to-get-around/ferry" target="_blank" rel="noopener" title="Official site">↗</a></b><span>Half an hour past the Opera House and out toward the Heads for the price of a bus ticket. The ferries are public transport, and they beat any paid harbour cruise.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#7c8794">Walk</span> Manly Wharf → Shelly Beach along the promenade ·<b>20 min</b></div>
+    <div class="slot"><time>11:00</time><div class="what"><b>Manly to Shelly Beach, then North Head</b><span>Snorkelling at Shelly if the water's clear; North Head for the whole harbour at once.</span><div class="vote"></div></div></div>
+    <div class="slot"><time>Alt</time><div class="what"><b>If family are driving — Palm Beach</b><span>The Barrenjoey Lighthouse walk, 45 minutes up, for the best view on that coast. Lunch at The Boathouse.</span><div class="vote"></div></div></div>
   </div></div>
 </details>
 
@@ -455,12 +655,15 @@
   <summary><div class="d-date">Mon<b>28</b>Dec</div>
     <div class="d-title">The city proper<small>Opera House · Botanic Garden · The Rocks</small></div><div class="chev">▾</div></summary>
   <div class="d-body"><div class="sched">
-    <div class="slot"><time>09:30</time><div class="what"><b>Train to Circular Quay</b><span>40 minutes from Pymble on the T1, or change at Chatswood for the Metro. Tap on with a contactless card.</span></div></div>
-    <div class="slot"><time>10:30</time><div class="what"><b>Sydney Opera House tour</b><span>Goes inside the halls and explains the building, which is a stranger story than most people know. Otherwise walk the podium for free.</span></div></div>
-    <div class="slot"><time>12:00</time><div class="what"><b>Botanic Garden to Mrs Macquarie's Chair<span class="tag t-free">Free</span></b><span>Where the Opera House and the Bridge line up in one frame.</span></div></div>
-    <div class="slot"><time>13:30</time><div class="what"><b>Lunch at Woolloomooloo, then The Rocks</b><span>Harry's Café de Wheels for a pie, purely for the tradition. Then the oldest laneways in the city.</span></div></div>
-    <div class="slot"><time>Evening</time><div class="what"><b>Farewell dinner</b><span>If anyone wants the BridgeClimb (about A$300 a head), this is the day — book well ahead.</span></div></div>
-    <div class="slot"><time>Alt</time><div class="what"><b>Or: Bondi to Coogee</b><span>Six kilometres of cliff path past Tamarama, Bronte and Clovelly — the best free thing in Sydney. Go early, there's little shade.</span></div></div>
+    <div class="slot"><time>09:30</time><div class="what"><b>Train to Circular Quay</b><span>40 minutes from Pymble on the T1, or change at Chatswood for the Metro. Tap on with a contactless card.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#7c8794">Walk</span> Quay → Opera House forecourt ·<b>5 min</b></div>
+    <div class="slot"><time>10:30</time><div class="what"><b>Sydney Opera House tour <a class="ext" href="https://www.sydneyoperahouse.com/" target="_blank" rel="noopener" title="Official site">↗</a></b><span>Goes inside the halls and explains the building, which is a stranger story than most people know. Otherwise walk the podium for free.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#7c8794">Walk</span> Through the Botanic Garden to Mrs Macquarie's Chair ·<b>20 min</b></div>
+    <div class="slot"><time>12:00</time><div class="what"><b>Botanic Garden to Mrs Macquarie's Chair<span class="tag t-free">Free</span> <a class="ext" href="https://www.botanicgardens.org.au/royal-botanic-garden-sydney" target="_blank" rel="noopener" title="Official site">↗</a></b><span>Where the Opera House and the Bridge line up in one frame.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#7c8794">Walk</span> Round the bay to Woolloomooloo ·<b>15 min</b></div>
+    <div class="slot"><time>13:30</time><div class="what"><b>Lunch at Woolloomooloo, then The Rocks <a class="ext" href="https://www.therocks.com/" target="_blank" rel="noopener" title="Official site">↗</a></b><span>Harry's Café de Wheels for a pie, purely for the tradition. Then the oldest laneways in the city.</span><div class="vote"></div></div></div>
+    <div class="slot"><time>Evening</time><div class="what"><b>Farewell dinner</b><span>If anyone wants the BridgeClimb (about A$300 a head), this is the day — book well ahead.</span><div class="vote"></div></div></div>
+    <div class="slot"><time>Alt</time><div class="what"><b>Or: Bondi to Coogee <a class="ext" href="https://www.visitnsw.com/destinations/sydney/eastern-suburbs/bondi/attractions/bondi-to-coogee-coastal-walk" target="_blank" rel="noopener" title="Official site">↗</a></b><span>Six kilometres of cliff path past Tamarama, Bronte and Clovelly — the best free thing in Sydney. Go early, there's little shade.</span><div class="vote"></div></div></div>
   </div></div>
 </details>
 
@@ -468,9 +671,10 @@
   <summary><div class="d-date">Tue<b>29</b>Dec</div>
     <div class="d-title">Home<small>A whole free day, then the 21:45 to Tokyo</small></div><div class="chev">▾</div></summary>
   <div class="d-body"><div class="sched">
-    <div class="slot"><time>Day</time><div class="what"><b>Keep it local and unhurried</b><span>A last swim, a long lunch, and pack properly rather than at speed.</span></div></div>
-    <div class="slot"><time>18:00</time><div class="what"><b>Leave Pymble</b><span>Allow for holiday-week traffic on the Bridge and the M1.</span></div></div>
-    <div class="slot"><time>21:45</time><div class="what"><b>NH880 to Haneda</b><span>Then 4h45 in transit at Tokyo — international to international, so you stay airside and never clear Japanese immigration. Home at Heathrow 15:45 on the 30th.</span></div></div>
+    <div class="slot"><time>Day</time><div class="what"><b>Keep it local and unhurried</b><span>A last swim, a long lunch, and pack properly rather than at speed.</span><div class="vote"></div></div></div>
+    <div class="hop"><span class="ln" style="--c:#8a6d3b">Taxi</span> Pymble → Sydney Airport, holiday traffic ·<b>45–60 min</b></div>
+    <div class="slot"><time>18:00</time><div class="what"><b>Leave Pymble</b><span>Allow for holiday-week traffic on the Bridge and the M1.</span><div class="vote"></div></div></div>
+    <div class="slot"><time>21:45</time><div class="what"><b>NH880 to Haneda</b><span>Then 4h45 in transit at Tokyo — international to international, so you stay airside and never clear Japanese immigration. Home at Heathrow 15:45 on the 30th.</span><div class="vote"></div></div></div>
   </div></div>
 </details>
 
@@ -524,12 +728,12 @@
   </div>
 </div>
 
-<table>
+<table class="rt">
   <tr><th>Australian eVisitor (subclass 651)</th><th>Visa grant no.</th><th>TRN</th><th>Granted</th><th style="text-align:right">Status</th></tr>
-  <tr><td>Simon Christopher Mahony</td><td>on file</td><td>on file</td><td>01 Aug 2026</td><td class="num">✅ Granted</td></tr>
-  <tr><td>Abigail Louise Mahony</td><td>on file</td><td>on file</td><td>01 Aug 2026</td><td class="num">✅ Granted</td></tr>
-  <tr><td>Eva May Mahony</td><td>on file</td><td>on file</td><td>02 Aug 2026</td><td class="num">✅ Granted</td></tr>
-  <tr><td>Isaac James Mahony</td><td>on file</td><td>on file</td><td>02 Aug 2026</td><td class="num">✅ Granted</td></tr>
+  <tr><td>Simon Christopher Mahony</td><td data-l="Visa grant no.">on file</td><td data-l="TRN">on file</td><td data-l="Granted">01 Aug 2026</td><td data-l="Status" class="num">✅ Granted</td></tr>
+  <tr><td>Abigail Louise Mahony</td><td data-l="Visa grant no.">on file</td><td data-l="TRN">on file</td><td data-l="Granted">01 Aug 2026</td><td data-l="Status" class="num">✅ Granted</td></tr>
+  <tr><td>Eva May Mahony</td><td data-l="Visa grant no.">on file</td><td data-l="TRN">on file</td><td data-l="Granted">02 Aug 2026</td><td data-l="Status" class="num">✅ Granted</td></tr>
+  <tr><td>Isaac James Mahony</td><td data-l="Visa grant no.">on file</td><td data-l="TRN">on file</td><td data-l="Granted">02 Aug 2026</td><td data-l="Status" class="num">✅ Granted</td></tr>
 </table>
 
 <div class="checks" style="margin-top:14px">
@@ -567,5 +771,109 @@
 </footer>
 
 </div>
+<script>
+(function(){
+  var PEOPLE=[["S","Simon","#c8632a"],["A","Abigail","#1d6b6b"],["E","Eva","#7a3f6d"],["I","Isaac","#2a5570"]];
+  var slots=[].slice.call(document.querySelectorAll(".vote"));
+  var N=slots.length, me=null, votes={};
+  PEOPLE.forEach(function(p){votes[p[0]]=new Array(N).fill(0);});
+
+  // ---- compact encode: 2 bits per item -> base64url ----
+  function enc(a){
+    var bytes=[];
+    for(var i=0;i<a.length;i+=4){
+      var b=0;
+      for(var j=0;j<4;j++) b|=((a[i+j]||0)&3)<<(6-2*j);
+      bytes.push(b);
+    }
+    var s=String.fromCharCode.apply(null,bytes);
+    return btoa(s).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+  }
+  function dec(str,n){
+    var out=new Array(n).fill(0);
+    try{
+      var s=atob(str.replace(/-/g,"+").replace(/_/g,"/"));
+      for(var i=0;i<n;i++){
+        var b=s.charCodeAt(i>>2)||0;
+        out[i]=(b>>(6-2*(i%4)))&3;
+      }
+    }catch(e){}
+    return out;
+  }
+  function readURL(){
+    var q=new URLSearchParams(location.search).get("v");
+    if(!q) return;
+    q.split(",").forEach(function(part){
+      var bits=part.split(":");
+      if(bits.length===2 && votes[bits[0]]) votes[bits[0]]=dec(bits[1],N);
+    });
+  }
+  function shareURL(){
+    var parts=[];
+    PEOPLE.forEach(function(p){
+      if(votes[p[0]].some(function(x){return x;})) parts.push(p[0]+":"+enc(votes[p[0]]));
+    });
+    var u=location.origin+location.pathname;
+    return parts.length? u+"?v="+parts.join(",") : u;
+  }
+
+  // ---- build the who-am-I bar ----
+  var who=document.getElementById("who");
+  PEOPLE.forEach(function(p){
+    var b=document.createElement("button");
+    b.type="button"; b.textContent=p[1]; b.style.setProperty("--p",p[2]);
+    b.setAttribute("aria-pressed","false");
+    b.onclick=function(){ me=(me===p[0]?null:p[0]); paint(); };
+    b.dataset.k=p[0]; who.appendChild(b);
+  });
+
+  // ---- build each item's controls ----
+  slots.forEach(function(el,i){
+    el.innerHTML='<button type="button" class="up" aria-pressed="false" title="Yes">&#128077;</button>'+
+                 '<button type="button" class="dn" aria-pressed="false" title="No">&#128078;</button>'+
+                 '<span class="tally"></span>';
+    el.querySelector(".up").onclick=function(){cast(i,1);};
+    el.querySelector(".dn").onclick=function(){cast(i,2);};
+  });
+  function cast(i,val){
+    if(!me){ alert("Pick who you are first — the buttons at the top."); return; }
+    votes[me][i] = (votes[me][i]===val ? 0 : val);
+    paint();
+  }
+
+  function paint(){
+    [].forEach.call(who.children,function(b){
+      b.setAttribute("aria-pressed", b.dataset.k===me ? "true":"false");
+    });
+    slots.forEach(function(el,i){
+      var up=el.querySelector(".up"), dn=el.querySelector(".dn"), t=el.querySelector(".tally");
+      up.setAttribute("aria-pressed", me&&votes[me][i]===1 ? "true":"false");
+      dn.setAttribute("aria-pressed", me&&votes[me][i]===2 ? "true":"false");
+      var h="";
+      PEOPLE.forEach(function(p){
+        var v=votes[p[0]][i];
+        if(v) h+='<span class="pip'+(v===2?" dn":"")+'" style="--p:'+p[2]+'" title="'+p[1]+(v===1?" — yes":" — no")+'">'+p[0]+'</span>';
+      });
+      t.innerHTML=h;
+    });
+    var n = me ? votes[me].filter(function(x){return x;}).length : 0;
+    document.getElementById("vcount").textContent = me ? (n+" of "+N+" voted") : "";
+  }
+
+  document.getElementById("vshare").onclick=function(){
+    var u=shareURL(), btn=this;
+    function done(){ btn.textContent="Copied ✓"; setTimeout(function(){btn.textContent="Copy our votes link";},1800); }
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(u).then(done,function(){prompt("Copy this link:",u);});
+    } else { prompt("Copy this link:",u); }
+  };
+  document.getElementById("vclear").onclick=function(){
+    if(!me){ alert("Pick who you are first."); return; }
+    votes[me]=new Array(N).fill(0); paint();
+  };
+
+  readURL(); paint();
+})();
+</script>
 </body>
 </html>
